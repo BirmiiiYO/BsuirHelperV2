@@ -2,21 +2,29 @@ import type { NextPage } from 'next'
 import Image from 'next/image'
 
 import { Button } from 'antd'
+import { DatePicker, Select, Space, TimePicker } from 'antd';
+import React, { useState } from 'react';
 
-const myLoader = () => {
-  return "https://i.imgur.com/MJekAr4.gif"
-}
 
+const { Option } = Select;
+const PickerWithType = ({ type, onChange }) => {
+  if (type === 'time') return <TimePicker onChange={onChange} />;
+  if (type === 'date') return <DatePicker onChange={onChange} />;
+  return <DatePicker picker={type} onChange={onChange} />;
+};
 
 const Home: NextPage = () => {
+
+  const [type, setType] = useState('time');
+
   return (
     //<head></head>
     <div className='app'>
       <div className='container'>
+      <div className='top-container'>
       <header>
       <Image
-      loader={myLoader}
-      src="logo.png"
+      src="/../public/Logo.gif"
       alt="Logo"
       width={60}
       height={60}
@@ -31,29 +39,40 @@ const Home: NextPage = () => {
      </header>
      <nav>
       <ul>
-      <li>zxc
+      <li>Предметы
       </li>
-      <li>zxc
+      <li>Преподаватели
       </li>
-      <li>zxc
+      <li>Форум
       </li>
-      <li>zxc
+      <li>Новости
       </li>
-      <li>zxc
+      <li>Контакты
       </li>
-      <li>zxc
+      <li>Последние публикации
       </li>
-
       </ul>
       </nav>
       </div>
-     
+     <div className='main-container'>
      <aside>
-
-     </aside>
-     <main>
-
-     </main>
+    <Space>
+      <Select value={type} onChange={setType}>
+        <Option value="time">Time</Option>
+        <Option value="date">Date</Option>
+        <Option value="week">Week</Option>
+        <Option value="month">Month</Option>
+        <Option value="quarter">Quarter</Option>
+        <Option value="year">Year</Option>
+      </Select>
+      <PickerWithType type={type} onChange={(value) => console.log(value)} />
+    </Space>
+</aside>
+<main>
+zxc
+</main>
+     </div>
+    </div>
     </div>
   )
 }
