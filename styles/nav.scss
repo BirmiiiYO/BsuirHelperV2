@@ -1,0 +1,13 @@
+nav{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    border-bottom: 1px solid black;
+    font-family: 'Mouse Memoirs', sans-serif;
+      ul{
+        display: flex;
+        justify-content: space-between;
+        width: 800px;
+        font-family: 'Oleo Script Swash Caps', cursive;
+      }
+  }
