@@ -1,3 +1,4 @@
+import { getEmployees } from './ActionCreators';
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IEmployee } from "../../models/Employee";
 
@@ -17,19 +18,20 @@ const initialState:EmployeeState = {
 export const employeeSlice = createSlice({
     name:'employee',
     initialState,
-    reducers:{
-        employeeGetting(state){
-            state.isLoading=true;
-        },
-        employeeGettingSuccess(state, action: PayloadAction<IEmployee[]>){
+    reducers:{},
+    extraReducers:{
+        [getEmployees.fulfilled.type]:(state,  action: PayloadAction<IEmployee[]>)=>{
             state.isLoading=false;
             state.Error = '';
             state.employees = action.payload
         },
-        employeeGettingError(state, action: PayloadAction<string>){
+        [getEmployees.pending.type]:(state)=>{
+            state.isLoading = true;
+        },
+        [getEmployees.rejected.type]:(state, action: PayloadAction<string>)=>{
             state.isLoading=false;
             state.Error = action.payload
-        }
+        },
     }
 })
 

@@ -1,21 +1,27 @@
 import { useEffect } from "react";
+import EmployeeBlock from "../../components/EmployeeBlock";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
-import { getEmployee } from "../../reducs/reducers/ActionCreators";
+import { getEmployees } from "../../reducs/reducers/ActionCreators";
 
 
 export default function employees() {
 
   const dispatch = useAppDispatch();
-  const {employees} = useAppSelector(state=>state.employeeReducer)
+  const {employees, isLoading, Error} = useAppSelector(state=>state.employeeReducer)
 
   useEffect(()=>{
-    dispatch(getEmployee())    
+    dispatch(getEmployees())    
   },[])
 
-  console.log(employees[0]?.firstName);
+  console.log()
+  
   
 
   return (
-    <div></div>
+    <div>
+      {isLoading && <h2>Loading...</h2>}
+      {Error && <h2>{Error}</h2>}
+      {employees?.map(employee=>(<EmployeeBlock key={employee.id} {...employee}/>))}
+    </div>
   )
 }
