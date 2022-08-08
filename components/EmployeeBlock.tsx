@@ -7,12 +7,16 @@ export default function EmployeeBlock(data:IEmployee) {
     
   return (
     <div className="Block">
-        <Image
-        src={data.photoLink} alt="Logo"
-        width={60}
-        height={60}
-        />
+        
       <h3>{data.fio}</h3>
+      <span className="info">Имя: {data.firstName}</span>
+      <br/>
+      <span className="info">Отчество: {data.middleName}</span>
+      <br/>
+      <span className="info">звание: {data.rank}</span>
+      <br/>
+ 
+      
     </div>
   )
 }

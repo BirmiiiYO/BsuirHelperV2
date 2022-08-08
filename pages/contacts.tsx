@@ -1,6 +1,7 @@
+import Image from "next/image"
 
 export default function contacts() {
   return (
-    <div>contacts</div>
+    <h1>zxc</h1>
   )
 }
