@@ -1,28 +1,34 @@
+import Link from "next/link";
 import { useEffect } from "react";
-import EmployeeBlock from "../../components/EmployeeBlock";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { getEmployees } from "../../reducs/reducers/ActionCreators";
+import { urlSlice } from "../../reducs/reducers/UrlSlice";
 
 
 export default function Employees() {
 
   const dispatch = useAppDispatch();
   const {employees, isLoading, Error} = useAppSelector(state=>state.employeeReducer)
+  const {setActiveUrl}= urlSlice.actions
 
   useEffect(()=>{
-    dispatch(getEmployees())    
-})
+      dispatch(getEmployees())    
+// eslint-disable-next-line react-hooks/exhaustive-deps
+},[])
 
-  console.log(employees)
-  
   
 
   return (
     <div>
       {isLoading && <h2>Loading...</h2>}
       {Error && <h2>{Error}</h2>}
-      {employees?.map(employee=>(<EmployeeBlock key={employee.id} {...employee}/>))}
-      
+      <ul>
+      {employees?.map((employee)=>(<li key={employee.id} >
+        <Link href={`/employees/${employee.urlId}`} prefetch={false}> 
+        <a style={{color:"black"}} onClick={()=>dispatch(setActiveUrl(employee.urlId))}> {employee.fio}</a>
+        </Link>
+      </li>))}
+      </ul>
     </div>
   )
 }

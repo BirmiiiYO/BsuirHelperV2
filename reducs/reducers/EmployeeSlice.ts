@@ -20,16 +20,16 @@ export const employeeSlice = createSlice({
     initialState,
     reducers:{},
     extraReducers:{
-        [getEmployees.fulfilled.type]:(state,  action: PayloadAction<IEmployee[]>)=>{
-            state.isLoading=false;
-            state.Error = '';
-            state.employees = action.payload
-        },
         [getEmployees.pending.type]:(state)=>{
             state.isLoading = true;
         },
+        [getEmployees.fulfilled.type]:(state,  action: PayloadAction<IEmployee[]>)=>{
+            state.isLoading = false;
+            state.Error = '';
+            state.employees = action.payload
+        },
         [getEmployees.rejected.type]:(state, action: PayloadAction<string>)=>{
-            state.isLoading=false;
+            state.isLoading = false;
             state.Error = action.payload
         },
     }
