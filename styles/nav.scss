@@ -2,11 +2,20 @@ nav{
     display: flex;
     justify-content: center;
     margin-top: 20px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgb(181, 97, 97);
       ul{
         display: flex;
         justify-content: space-between;
         width: 800px;
         font-family: 'Oleo Script Swash Caps', cursive;
+      }
+      li{
+        background-color: aliceblue;
+        border-radius: 10px;
+        padding: 5px 10px;
+        &:hover{
+          background-color: black;
+          box-shadow: 5px 5px rgb(71, 69, 69);
+        }
       }
   }
