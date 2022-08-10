@@ -39,4 +39,18 @@ li {
   display: flex;
 }
 
-
+.authorization{
+  display: block;
+  padding: 20px;
+  height: 270px;
+  width: 300px;
+  position: absolute;
+  top: 25%;
+  left: 43%;
+  background-color: rgb(218, 202, 185);
+    .close{
+      display: flex;
+      justify-content: flex-end;
+      padding-bottom: 10px;
+  }
+}

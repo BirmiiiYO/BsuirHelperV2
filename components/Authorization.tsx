@@ -1,18 +1,27 @@
 import 'antd/dist/antd.css';
 import { Button, Checkbox, Form, Input } from 'antd';
+import { ValidateErrorEntity } from 'rc-field-form/lib/interface';
+import { useAppDispatch, useAppSelector } from '../hooks/redux';
+import { authSlice } from '../reducs/reducers/AuthorizationSlice';
+import { CloseOutlined } from '@ant-design/icons';
 
 const Authorization = () => {
+    
+    const dispatch = useAppDispatch();
+    const {setActiveAuth}= authSlice.actions 
+    const {authActive} = useAppSelector(state=>state.authReducer)
     const onFinish = (values:string) => {
       console.log('Success:', values);
+      dispatch(setActiveAuth(false))
     };
-  
-    const onFinishFailed = (errorInfo:any) => {
+    const onFinishFailed = (errorInfo:ValidateErrorEntity<string>) => {
       console.log('Failed:', errorInfo);
     };
   
     return (
-      
-        <Form
+        <div className='authorization' style={authActive ? {display:"block"}:{display:"none"}}>
+          <div className='close'><CloseOutlined onClick={()=>dispatch(setActiveAuth(false))}/> </div>   
+          <Form
         name="basic"
         labelCol={{
           span: 8,
@@ -75,7 +84,7 @@ const Authorization = () => {
           </Button>
         </Form.Item>
       </Form>
-      
+        </div>      
     );
   };
   

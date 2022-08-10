@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app'
 import Layout from '../components/Layout';
 import { Provider } from 'react-redux';
 import { setupStore } from '../reducs/store';
+import Authorization from '../components/Authorization';
 
 const store = setupStore()
 

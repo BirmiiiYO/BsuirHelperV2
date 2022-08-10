@@ -1,8 +1,15 @@
 import Image from 'next/image'
 
 import { Button } from 'antd'
+import { useAppDispatch } from '../hooks/redux'
+import { authSlice } from '../reducs/reducers/AuthorizationSlice'
+import { CloseOutlined } from '@ant-design/icons';
 
 export default function Header() {
+
+  const dispatch = useAppDispatch();
+  const {setActiveAuth}= authSlice.actions
+
   return (
     <header>
       <div className='logo-name'>
@@ -18,7 +25,7 @@ export default function Header() {
         </div>
       </div>
         <div className='login'>
-        <Button type='primary' size='large'>Войти</Button>
+        <Button type='primary' size='large' onClick={()=>dispatch(setActiveAuth(true))}>Login</Button>
         </div>
      </header>
   )

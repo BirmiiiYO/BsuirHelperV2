@@ -5,14 +5,13 @@ import Header from "./Header";
 import Nav from "./Nav";
 
 const Layout = ({children}) =>(
+  
     <div className='app'>
       <div className='container'>
+      <Authorization/>
       <div className='top-container'>
       <Header/>
-      
-      {/* <Authorization/> */}
-      
-     <Nav/>
+       <Nav/>
       </div>
      <div className='main-container'>
      <Aside/>
@@ -23,6 +22,7 @@ const Layout = ({children}) =>(
      <Footer/>
     </div>
     </div>
+  
   )
 
   export default Layout;
