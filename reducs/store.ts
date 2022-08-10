@@ -1,12 +1,9 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 import employeeReducer from './reducers/EmployeeSlice'
-import UrlReducer from "./reducers/UrlSlice"
-
 
 const rootReducer = combineReducers({
     employeeReducer,
-    UrlReducer
 })
 
 export const setupStore = ()=>{

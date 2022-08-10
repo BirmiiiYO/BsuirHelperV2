@@ -13,6 +13,7 @@ export default function Aside() {
     const [type, setType] = useState('time');
   return (
     <aside>
+    <div className='content'>
     <Space>
       <Select value={type} onChange={setType}>
         <Option value="time">Time</Option>
@@ -24,6 +25,7 @@ export default function Aside() {
       </Select>
       <PickerWithType type={type} onChange={(value) => console.log(value)} />
     </Space>
+    </div>
 </aside>
   )
 }

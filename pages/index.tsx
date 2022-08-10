@@ -1,15 +1,12 @@
-import type { NextPage } from 'next'
-import Image from 'next/image'
+import React from 'react';
 
-import { Button } from 'antd'
-import { DatePicker, Select, Space, TimePicker } from 'antd';
-import React, { useState } from 'react';
-import Link from 'next/link';
-import Head from 'next/head';
+// json-server --watch db.json --port 3004  
 
 const Home = ()=>{
   return (
-    <div>zxc</div>
+    <div>соси хуй
+      яя
+    </div>
   )
 }
 
