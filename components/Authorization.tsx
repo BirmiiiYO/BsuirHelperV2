@@ -8,11 +8,12 @@ import { CloseOutlined } from '@ant-design/icons';
 const Authorization = () => {
     
     const dispatch = useAppDispatch();
-    const {setActiveAuth}= authSlice.actions 
-    const {authActive} = useAppSelector(state=>state.authReducer)
+    const {setActiveAuthForm, setAuthorization}= authSlice.actions 
+    const {authActive, isAuth} = useAppSelector(state=>state.authReducer)
     const onFinish = (values:string) => {
       console.log('Success:', values);
-      dispatch(setActiveAuth(false))
+      dispatch(setActiveAuthForm(false))
+      dispatch(setAuthorization(true))
     };
     const onFinishFailed = (errorInfo:ValidateErrorEntity<string>) => {
       console.log('Failed:', errorInfo);
@@ -20,7 +21,7 @@ const Authorization = () => {
   
     return (
         <div className='authorization' style={authActive ? {display:"block"}:{display:"none"}}>
-          <div className='close'><CloseOutlined onClick={()=>dispatch(setActiveAuth(false))}/> </div>   
+          <div className='close'><CloseOutlined onClick={()=>dispatch(setActiveAuthForm(false))}/> </div>   
           <Form
         name="basic"
         labelCol={{

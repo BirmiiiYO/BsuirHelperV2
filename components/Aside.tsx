@@ -1,30 +1,12 @@
-import { useState } from 'react';
+import { useAppSelector } from "../hooks/redux"
 
-import { DatePicker, Select, Space, TimePicker } from 'antd';
-
-const { Option } = Select;
-const PickerWithType = ({ type, onChange }) => {
-  if (type === 'time') return <TimePicker onChange={onChange} />;
-  if (type === 'date') return <DatePicker onChange={onChange} />;
-  return <DatePicker picker={type} onChange={onChange} />;
-};
 
 export default function Aside() {
-    const [type, setType] = useState('time');
+  const {isAuth} = useAppSelector(state=>state.authReducer)
   return (
     <aside>
     <div className='content'>
-    <Space>
-      <Select value={type} onChange={setType}>
-        <Option value="time">Time</Option>
-        <Option value="date">Date</Option>
-        <Option value="week">Week</Option>
-        <Option value="month">Month</Option>
-        <Option value="quarter">Quarter</Option>
-        <Option value="year">Year</Option>
-      </Select>
-      <PickerWithType type={type} onChange={(value) => console.log(value)} />
-    </Space>
+    {isAuth ? 'Вы успешно авторизировались на сайте':'Добро пожаловать, войдите в личный кабинет'}
     </div>
 </aside>
   )
