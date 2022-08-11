@@ -1,11 +1,30 @@
+import axios from "axios"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import { useAppSelector } from "../../hooks/redux"
+import { IReview} from "../../models/Review";
+import { GetServerSideProps } from 'next'
+import Review from "../../components/Review";
 
-export default function Employee() {
+// json-server --watch db.json --port 3004
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  
+  try {
+
+    const res = await axios.get<IReview[]>('http://localhost:3004/reviews')
+    
+    return { props: { reviews: res.data } }
+
+    } catch (e) {
+    return { props: { error: 'Something went wrong' }}
+    }}
+
+export default function Employee(reviews:IReview[]) {
 
     const router = useRouter()
     const id = router.query
+    
     
     const {employees} = useAppSelector(state=>state.employeeReducer)
     const employee = employees.find(employee => employee.urlId === id.id)
@@ -31,6 +50,11 @@ export default function Employee() {
         <span>Откосится к: <strong>{employee?.academicDepartment ? employee?.academicDepartment.join(', ') : 'Отсутствует'}</strong></span>
         <span>Степень: <strong>{employee?.degree ? employee.degree : 'Отсутствует'}</strong></span>
         <span>Звание: <strong>{employee?.rank ? employee.rank : 'Отсутствует'}</strong></span>
+        </div>
+        <div className="reviews">
+        {reviews.map((review)=>(
+        <Review key={review.reviewId} {...review}/>
+        ))}
         </div>
     </div>
   )

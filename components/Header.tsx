@@ -26,10 +26,24 @@ export default function Header() {
         </div>
       </div>
         <div className='login'>
-        <Button type='primary' size='large' 
+        {/* <Button type='primary' size='large' 
         onClick={()=> {dispatch(setAuthorization(!isAuth));
           {isAuth ? dispatch(setActiveAuthForm(false)) : dispatch(setActiveAuthForm(true))}
-        }}>{isAuth ? 'Logout' : 'Login'}</Button>
+        }}>
+          {isAuth ? 'Logout' : 'Login'}</Button> */}
+          {isAuth ?
+          <Button onClick={()=> {
+            dispatch(setActiveAuthForm(false));
+            dispatch(setAuthorization(false))
+          }}>
+            Logout
+            </Button> :
+          <Button onClick={()=>{
+            dispatch(setActiveAuthForm(true))
+          }}>
+            Login
+            </Button>
+        }
         </div>
      </header>
   )

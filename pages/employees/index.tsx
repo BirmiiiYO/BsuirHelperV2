@@ -8,13 +8,12 @@ export default function Employees() {
 
   const dispatch = useAppDispatch();
   const {employees, isLoading, Error} = useAppSelector(state=>state.employeeReducer)
-
+  
   useEffect(()=>{
       dispatch(getEmployees())    
 // eslint-disable-next-line react-hooks/exhaustive-deps
 },[])
 
-  
 
   return (
     <div>
