@@ -4,7 +4,8 @@ import { useRouter } from "next/router"
 import { useAppSelector } from "../../hooks/redux"
 import { GetReviews} from "../../models/Review";
 import { GetServerSideProps } from 'next'
-import Review from "../../components/Review";
+import Reviews from "../../components/Reviews";
+import NewReview from "../../components/NewReview";
 
 // json-server --watch db.json --port 3004
 
@@ -27,7 +28,6 @@ function Employee(reviews:GetReviews) {
     const data = reviews.reviews
     const {employees} = useAppSelector(state=>state.employeeReducer)
     const employee = employees.find(employee => employee.urlId === id.id)
-    console.log(data);
       
   return (
     <div className="employeeBlock">
@@ -52,9 +52,10 @@ function Employee(reviews:GetReviews) {
         <span>Звание: <strong>{employee?.rank ? employee.rank : 'Отсутствует'}</strong></span>
         </div>
         <div className="reviews">
+          <NewReview/>
         <ul>
         {data.map(review => 
-          <Review key={review.reviewId} {...review}/>)}
+          <Reviews key={review.reviewId} {...review}/>)}
         </ul>
         </div>
     </div>

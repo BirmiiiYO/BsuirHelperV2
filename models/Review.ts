@@ -3,6 +3,7 @@ export interface IReview {
     grade: number;
     data: number;
     author: string;
+    authorPhoto: string;
     reviewId: number;
 }
 
