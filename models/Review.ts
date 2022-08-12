@@ -5,3 +5,7 @@ export interface IReview {
     author: string;
     reviewId: number;
 }
+
+export interface GetReviews{
+    reviews:Array<IReview>;
+}

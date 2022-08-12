@@ -2,7 +2,7 @@ import axios from "axios"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import { useAppSelector } from "../../hooks/redux"
-import { IReview} from "../../models/Review";
+import { GetReviews} from "../../models/Review";
 import { GetServerSideProps } from 'next'
 import Review from "../../components/Review";
 
@@ -12,7 +12,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   
   try {
 
-    const res = await axios.get<IReview[]>('http://localhost:3004/reviews')
+    const res = await axios.get<GetReviews>('http://localhost:3004/reviews')
     
     return { props: { reviews: res.data } }
 
@@ -20,15 +20,15 @@ export const getServerSideProps: GetServerSideProps = async () => {
     return { props: { error: 'Something went wrong' }}
     }}
 
-export default function Employee(reviews:IReview[]) {
+function Employee(reviews:GetReviews) {
 
     const router = useRouter()
     const id = router.query
-    
-    
+    const data = reviews.reviews
     const {employees} = useAppSelector(state=>state.employeeReducer)
     const employee = employees.find(employee => employee.urlId === id.id)
-    
+    console.log(data);
+      
   return (
     <div className="employeeBlock">
       <h1>Личное дело преподавателя:</h1>
@@ -52,10 +52,13 @@ export default function Employee(reviews:IReview[]) {
         <span>Звание: <strong>{employee?.rank ? employee.rank : 'Отсутствует'}</strong></span>
         </div>
         <div className="reviews">
-        {reviews.map((review)=>(
-        <Review key={review.reviewId} {...review}/>
-        ))}
+        <ul>
+        {data.map(review => 
+          <Review key={review.reviewId} {...review}/>)}
+        </ul>
         </div>
     </div>
   )
 }
+
+export default Employee
