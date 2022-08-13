@@ -1,7 +1,7 @@
-import Image from "next/image"
-
-export default function contacts() {
+function Contacts() {
   return (
-    <h1>zxc</h1>
+    <h1>contacts</h1>
   )
 }
+
+export default Contacts

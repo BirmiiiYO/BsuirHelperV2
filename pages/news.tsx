@@ -1,7 +1,7 @@
-
-
-export default function news() {
+function News() {
   return (
     <div>news</div>
   )
 }
+
+export default News

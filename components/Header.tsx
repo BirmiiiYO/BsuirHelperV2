@@ -4,7 +4,7 @@ import { Button } from 'antd'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { authSlice } from '../reducs/reducers/AuthorizationSlice'
 
-export default function Header() {
+function Header() {
 
   const dispatch = useAppDispatch();
   const {setActiveAuthForm, setAuthorization}= authSlice.actions
@@ -48,3 +48,5 @@ export default function Header() {
      </header>
   )
 }
+
+export default Header

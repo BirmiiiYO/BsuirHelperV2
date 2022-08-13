@@ -1,8 +1,7 @@
-
 const Home = ()=>{
   return (
     <div>
-      zxc
+      home page
     </div>
   )
 }

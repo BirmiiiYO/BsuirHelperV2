@@ -1,0 +1,11 @@
+    export interface ILocation {
+        structureId: number;
+        address: string;
+        lat: number;
+        lng: number;
+        name: string;
+    }
+
+    export interface GetLocation {
+        locations: Array<Location>;
+    }

@@ -4,7 +4,7 @@ import moment from 'moment';
 import { IReview } from '../models/Review';
 import { format } from 'path';
 
-export default function newReview( review:IReview) {
+function Reviews( review:IReview) {
 
   return (
     <Comment
@@ -23,3 +23,5 @@ export default function newReview( review:IReview) {
     />
   )
 }
+
+export default Reviews

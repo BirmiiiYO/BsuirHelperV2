@@ -1,7 +1,7 @@
-
-
-export default function latestPublications() {
+function LatestPublications() {
   return (
     <div>latestPublications</div>
   )
 }
+
+export default LatestPublications

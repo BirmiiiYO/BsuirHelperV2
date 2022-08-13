@@ -9,18 +9,6 @@ import NewReview from "../../components/NewReview";
 
 // json-server --watch db.json --port 3004
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  
-  try {
-
-    const res = await axios.get<GetReviews>('http://localhost:3004/reviews')
-    
-    return { props: { reviews: res.data } }
-
-    } catch (e) {
-    return { props: { error: 'Something went wrong' }}
-    }}
-
 function Employee(reviews:GetReviews) {
 
     const router = useRouter()
@@ -53,13 +41,25 @@ function Employee(reviews:GetReviews) {
         </div>
         <div className="reviews">
           <NewReview/>
-        <ul>
+        {data ? <ul>
         {data.map(review => 
           <Reviews key={review.reviewId} {...review}/>)}
-        </ul>
+        </ul> : <h3>Ooops, some problems</h3>}
         </div>
     </div>
   )
 }
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  
+  try {
+
+    const res = await axios.get<GetReviews>('http://localhost:3004/reviews')
+    
+    return { props: { reviews: res.data } }
+
+    } catch (e) {
+    return { props: { error: 'Something went wrong' }}
+    }}
 
 export default Employee

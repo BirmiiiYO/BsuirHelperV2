@@ -1,7 +1,6 @@
 import { useAppSelector } from "../hooks/redux"
 
-
-export default function Aside() {
+function Aside() {
   const {isAuth} = useAppSelector(state=>state.authReducer)
   return (
     <aside>
@@ -11,3 +10,5 @@ export default function Aside() {
 </aside>
   )
 }
+
+export default Aside

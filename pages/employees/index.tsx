@@ -3,8 +3,7 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux"
 import { getEmployees } from "../../reducs/reducers/ActionCreators";
 
-
-export default function Employees() {
+function Employees() {
 
   const dispatch = useAppDispatch();
   const {employees, isLoading, Error} = useAppSelector(state=>state.employeeReducer)
@@ -30,3 +29,5 @@ export default function Employees() {
     </div>
   )
 }
+
+export default Employees
