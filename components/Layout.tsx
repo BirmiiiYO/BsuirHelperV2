@@ -1,10 +1,16 @@
+import { type } from "os";
+import { Children } from "react";
 import Aside from "./Aside";
 import Authorization from "./Authorization";
 import Footer from "./Footer";
 import Header from "./Header";
 import Nav from "./Nav";
 
-const Layout = ({children}) =>(
+type LayoutProps = {
+  children: React.ReactNode,
+}
+
+const Layout = ({children}: LayoutProps) =>(
   
     <div className='app'>
       <div className='container'>

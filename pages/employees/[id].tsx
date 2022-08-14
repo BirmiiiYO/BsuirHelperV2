@@ -7,8 +7,6 @@ import { GetServerSideProps } from 'next'
 import Reviews from "../../components/Reviews";
 import NewReview from "../../components/NewReview";
 
-// json-server --watch db.json --port 3004
-
 function Employee(reviews:GetReviews) {
 
     const router = useRouter()

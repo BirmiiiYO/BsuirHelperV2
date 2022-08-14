@@ -7,5 +7,5 @@
     }
 
     export interface GetLocation {
-        locations: Array<Location>;
+        locations: Array<ILocation>;
     }
