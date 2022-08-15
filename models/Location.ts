@@ -1,8 +1,10 @@
+import { LatLng, LatLngExpression } from "leaflet";
+
     export interface ILocation {
         structureId: number;
         address: string;
-        lat: number;
-        lng: number;
+        lat: any;
+        lng:any;
         name: string;
     }
 

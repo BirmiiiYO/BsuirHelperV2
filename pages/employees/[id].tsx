@@ -6,6 +6,8 @@ import { GetReviews} from "../../models/Review";
 import { GetServerSideProps } from 'next'
 import Reviews from "../../components/Reviews";
 import NewReview from "../../components/NewReview";
+import { useEffect } from "react";
+import { getEmployees } from "../../reducs/reducers/ActionCreators";
 
 function Employee(reviews:GetReviews) {
 
@@ -14,6 +16,7 @@ function Employee(reviews:GetReviews) {
     const data = reviews.reviews
     const {employees} = useAppSelector(state=>state.employeeReducer)
     const employee = employees.find(employee => employee.urlId === id.id)
+
       
   return (
     <div className="employeeBlock">

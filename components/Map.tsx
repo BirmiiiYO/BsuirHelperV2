@@ -1,63 +1,64 @@
-import axios from "axios"
-import { GetServerSideProps, GetStaticProps } from "next"
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-import 'leaflet/dist/leaflet.css';
-import { GetLocation } from "../models/Location"
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../hooks/redux";
+import { fetchLocation } from "../reducs/reducers/ActionCreators";
 
-// json-server --watch db.json --port 3004
+const Map = () => {
 
-function Map(locations:GetLocation) {
-
-    const data = locations.locations
-    console.log("OTDAY",data);
-    
+  const MAP_API_key = "pk.eyJ1IjoidGVtYWJpcm1pIiwiYSI6ImNsNnVtbTBnZDFmZnkzam4yZm5ibWVtb3UifQ.Oiw_j57yDwQpFyfjpxMngA"
+  const dispatch = useAppDispatch();
+  const {locations, isLoading, Error} = useAppSelector(state=>state.locationReducer)
+  const [activeBuild, setActiveBuild] = useState<number | null>(1);
   
-    return (
-      <div>
-        <div>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <MapContainer
-      className="markercluster-map"
-      center={[51.0, 19.0]}
-      zoom={4}
-      maxZoom={18}
-      style={{ height: "90vh" }}
-      minZoom={1}
-      maxBounds={[
-        [90, -180],
-        [-90, 180]
-      ]}
-      
+  useEffect(()=>{
+      dispatch(fetchLocation())    
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+},[])
+
+console.log(locations[0]?.name);
+
+
+  return (
+    <>
+    <div className="info">
+      <h1>Что где есть
+      <label>(Нажмите чтобы увидеть)</label>
+      </h1>
+      {isLoading && <div className="lds-facebook"><div></div><div></div><div></div></div>}
+      {Error && <h2>{Error}</h2>}
+      <ul>
+      {locations.map(location=>
+      <li 
+      key={location.structureId}
+      onClick={() => {
+        activeBuild === location.structureId ? setActiveBuild(null) : setActiveBuild(location.structureId);
+      }}
+      className={activeBuild === location.structureId ? 'active' : ''}
+      >
+      {location.name} - {location.address}
+      </li>
+      )}
+      </ul>
+    </div>
+
+    <div className="map">
+    <MapContainer
+      center={[53.858045, 27.4829066]}
+      zoom={14}
+      scrollWheelZoom={false}
+      style={{ height: "100%", width: "100%" }}
     >
       <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url={`https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/{z}/{x}/{y}@2x?access_token=${MAP_API_key}`}
       />
+      <Marker position={[53.9177318, 27.5945042]}>
+        <Popup>Hey ! I live here</Popup>
+      </Marker>
+    </MapContainer>
+    </div>
+    </>
+  );
+};
 
-    </MapContainer> 
-      </div> 
-)}
-
-export const getStaticProps: GetStaticProps = async () => {
-  
-  try {
-
-    const res = await axios.get<GetLocation>('http://localhost:3004/locations')
-    
-    return { props: { locations: res.data } }
-
-    } catch (e) {
-    return { props: { error: 'Something went wrong' }}
-    }}
-
-export default Map
+export default Map;
