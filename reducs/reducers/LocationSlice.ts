@@ -1,25 +1,26 @@
-import {  ILocation } from './../../models/Location';
+import { ILocation } from './../../models/Location';
 import { fetchLocation} from './ActionCreators';
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IEmployee } from "../../models/Employee";
 
 
 interface LocationState {
     locations:ILocation[];
     isLoading:boolean;
     Error:string;
+    activeBuild?:number | null;
 }
 
 const initialState:LocationState = {
     locations:[],
     isLoading: false,
     Error:'',
+    activeBuild:null
 }
 
 export const locationSlice = createSlice({
     name:'location',
     initialState,
-    reducers:{},
+    reducers:{  },
     extraReducers:{
         [fetchLocation.pending.type]:(state)=>{
             state.isLoading = true;

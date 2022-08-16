@@ -6,8 +6,6 @@ import { GetReviews} from "../../models/Review";
 import { GetServerSideProps } from 'next'
 import Reviews from "../../components/Reviews";
 import NewReview from "../../components/NewReview";
-import { useEffect } from "react";
-import { getEmployees } from "../../reducs/reducers/ActionCreators";
 
 function Employee(reviews:GetReviews) {
 

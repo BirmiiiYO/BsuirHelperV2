@@ -1,3 +1,4 @@
+import { GetLocation, ILocation } from './../../models/Location';
 import axios from "axios";
 import { IEmployee } from "../../models/Employee";
 import { createAsyncThunk } from '@reduxjs/toolkit';
@@ -18,7 +19,7 @@ export const fetchLocation = createAsyncThunk(
     'locations/getAll',
     async (_, thunkApi)=>{
         try {
-            const response = await axios.get<IEmployee[]>("http://localhost:3004/locations")
+            const response = await axios.get<GetLocation>("http://localhost:3004/locations")
             return response.data
         } catch (e){
             return thunkApi.rejectWithValue("Не удалось загрузить данные")
