@@ -10,7 +10,7 @@ function Nav() {
       </li>
       <li><Link href="/location">Расположение</Link>
       </li>
-      <li><Link href="/news">Новости</Link>
+      <li><Link href="/news">Новости кафедры</Link>
       </li>
       <li><Link href="/contacts">Контакты</Link>
       </li>
