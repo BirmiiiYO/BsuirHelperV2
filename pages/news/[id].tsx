@@ -1,32 +1,29 @@
 import axios from "axios"
 import { GetServerSideProps } from "next"
-import { useRouter } from "next/router"
+import { GetSingleDepartment } from "../../models/Department"
 
-const Rout= ()=> {
-  const router = useRouter()
-  const id =router.query
-  console.log(id)
-}
+function NewsDepartment(newsDep:GetSingleDepartment) {
 
-export default function NewsDepartment(newsDep:any, Rout) {
-
-  console.log(Rout);
+  const data = newsDep.department
+  console.log(newsDep);
   
-  
+
+
   return (
-    <div>zxc</div>
+    <div>{data ? "Успешно": "Не успешно"}</div>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (Rout) => {
+export const getServerSideProps: GetServerSideProps = async () => {
  
     try {
-      console.log(Rout);
-      
-      const res = await axios.get<any>(`https://iis.bsuir.by/api/v1/announcements/departments?id=${Rout}`)
-      
+
+      const res = await axios.get<GetSingleDepartment>(`https://iis.bsuir.by/api/v1/announcements/departments?id=20027`)
       return { props: { newsDep: res.data } }
   
       } catch (e) {
       return { props: { error: 'Something went wrong' }}
       }}
+
+
+export default NewsDepartment

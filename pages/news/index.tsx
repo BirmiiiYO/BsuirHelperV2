@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
-import { GetDepartment, IDepartment } from '../../models/Department'
+import { GetDepartments} from '../../models/Department'
 
-function News(departments:GetDepartment) {
+function News(departments:GetDepartments) {
 
   const data = departments.departments
   
@@ -25,7 +25,7 @@ export const getStaticProps: GetStaticProps = async () => {
   
   try {
 
-    const res = await axios.get<GetDepartment>('https://iis.bsuir.by/api/v1/departments')
+    const res = await axios.get<GetDepartments>('https://iis.bsuir.by/api/v1/departments')
     
     return { props: { departments: res.data } }
 
