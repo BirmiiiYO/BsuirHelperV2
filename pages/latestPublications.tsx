@@ -1,4 +1,6 @@
-function LatestPublications() {
+import { FC } from "react"
+
+const LatestPublications:FC = () => {
   return (
     <div>latestPublications</div>
   )

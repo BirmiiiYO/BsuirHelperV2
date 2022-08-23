@@ -1,5 +1,4 @@
-import { type } from "os";
-import { Children } from "react";
+import { FC } from "react";
 import Aside from "./Aside";
 import Authorization from "./Authorization";
 import Footer from "./Footer";
@@ -10,7 +9,7 @@ type LayoutProps = {
   children: React.ReactNode,
 }
 
-const Layout = ({children}: LayoutProps) =>(
+const Layout:FC<LayoutProps> = ({children}) =>(
   
     <div className='app'>
       <div className='container'>

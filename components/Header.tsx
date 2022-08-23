@@ -1,10 +1,10 @@
 import Image from 'next/image'
-
 import { Button } from 'antd'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { authSlice } from '../reducs/reducers/AuthorizationSlice'
+import { FC } from 'react'
 
-function Header() {
+const Header:FC = () => {
 
   const dispatch = useAppDispatch();
   const {setActiveAuthForm, setAuthorization}= authSlice.actions

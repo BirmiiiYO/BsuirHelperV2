@@ -2,9 +2,9 @@ import 'antd/dist/antd.css';
 import { Avatar, Comment, Tooltip } from 'antd';
 import moment from 'moment';
 import { IReview } from '../models/Review';
-import { format } from 'path';
+import { FC } from 'react';
 
-function Reviews( review:IReview) {
+const Reviews:FC<IReview> = ( review) => {
 
   return (
     <Comment

@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
+import { FC } from "react";
 
-function Location() {
+const Location:FC = () => {
   
   const Map = dynamic(() => import("./../components/Map"), {
     ssr: false

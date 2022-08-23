@@ -4,17 +4,20 @@ import { ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { authSlice } from '../reducs/reducers/AuthorizationSlice';
 import { CloseOutlined } from '@ant-design/icons';
+import { FC } from 'react';
 
-const Authorization = () => {
+const Authorization:FC = () => {
     
     const dispatch = useAppDispatch();
     const {setActiveAuthForm, setAuthorization}= authSlice.actions 
     const {authActive, isAuth} = useAppSelector(state=>state.authReducer)
+
     const onFinish = (values:string) => {
       console.log('Success:', values);
       dispatch(setActiveAuthForm(false))
       dispatch(setAuthorization(true))
     };
+
     const onFinishFailed = (errorInfo:ValidateErrorEntity<string>) => {
       console.log('Failed:', errorInfo);
     };

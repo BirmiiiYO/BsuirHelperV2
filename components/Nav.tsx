@@ -1,6 +1,7 @@
 import Link from 'next/link';
+import { FC } from 'react';
 
-function Nav() {
+const Nav:FC = () => {
   return (
     <nav>
       <ul>

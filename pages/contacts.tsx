@@ -1,4 +1,6 @@
-function Contacts() {
+import { FC } from "react"
+
+const Contacts:FC = () => {
 
   return (
     <h1>Contacts</h1>

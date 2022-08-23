@@ -1,4 +1,6 @@
-function Subjects() {
+import { FC } from "react"
+
+const Subjects:FC = () => {
   return (
     <div>subjects</div>
   )

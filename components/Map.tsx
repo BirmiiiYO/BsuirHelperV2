@@ -1,13 +1,14 @@
-
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { useEffect, useState } from "react";
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
+import { FC, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { fetchLocation } from "../reducs/reducers/ActionCreators";
 import { LatLngExpression } from "leaflet";
 import { LocationIcon } from "./Icon";
 
-const Map = () => {
+// json-server --watch db.json --port 3004
+
+const Map:FC = () => {
 
   const MAP_API_key = "pk.eyJ1IjoidGVtYWJpcm1pIiwiYSI6ImNsNnVtbTBnZDFmZnkzam4yZm5ibWVtb3UifQ.Oiw_j57yDwQpFyfjpxMngA"
   const dispatch = useAppDispatch();
