@@ -1,9 +1,7 @@
-import { FC } from "react"
+import { FC } from 'react';
 
-const LatestPublications:FC = () => {
-  return (
-    <div>latestPublications</div>
-  )
-}
+const LatestPublications: FC = () => {
+  return <div>latestPublications</div>;
+};
 
-export default LatestPublications
+export default LatestPublications;

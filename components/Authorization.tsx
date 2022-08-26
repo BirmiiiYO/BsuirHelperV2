@@ -6,26 +6,27 @@ import { authSlice } from '../reducs/reducers/AuthorizationSlice';
 import { CloseOutlined } from '@ant-design/icons';
 import { FC } from 'react';
 
-const Authorization:FC = () => {
-    
-    const dispatch = useAppDispatch();
-    const {setActiveAuthForm, setAuthorization}= authSlice.actions 
-    const {authActive, isAuth} = useAppSelector(state=>state.authReducer)
+const Authorization: FC = () => {
+  const dispatch = useAppDispatch();
+  const { setActiveAuthForm, setAuthorization } = authSlice.actions;
+  const { authActive, isAuth } = useAppSelector((state) => state.authReducer);
 
-    const onFinish = (values:string) => {
-      console.log('Success:', values);
-      dispatch(setActiveAuthForm(false))
-      dispatch(setAuthorization(true))
-    };
+  const onFinish = (values: string) => {
+    console.log('Success:', values);
+    dispatch(setActiveAuthForm(false));
+    dispatch(setAuthorization(true));
+  };
 
-    const onFinishFailed = (errorInfo:ValidateErrorEntity<string>) => {
-      console.log('Failed:', errorInfo);
-    };
-  
-    return (
-        <div className='authorization' style={authActive ? {display:"block"}:{display:"none"}}>
-          <div className='close'><CloseOutlined onClick={()=>dispatch(setActiveAuthForm(false))}/> </div>   
-          <Form
+  const onFinishFailed = (errorInfo: ValidateErrorEntity<string>) => {
+    console.log('Failed:', errorInfo);
+  };
+
+  return (
+    <div className="authorization" style={authActive ? { display: 'block' } : { display: 'none' }}>
+      <div className="close">
+        <CloseOutlined onClick={() => dispatch(setActiveAuthForm(false))} />{' '}
+      </div>
+      <Form
         name="basic"
         labelCol={{
           span: 8,
@@ -52,7 +53,7 @@ const Authorization:FC = () => {
         >
           <Input />
         </Form.Item>
-  
+
         <Form.Item
           label="Password"
           name="password"
@@ -65,7 +66,7 @@ const Authorization:FC = () => {
         >
           <Input.Password />
         </Form.Item>
-  
+
         <Form.Item
           name="remember"
           valuePropName="checked"
@@ -76,7 +77,7 @@ const Authorization:FC = () => {
         >
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
-  
+
         <Form.Item
           wrapperCol={{
             offset: 8,
@@ -88,8 +89,8 @@ const Authorization:FC = () => {
           </Button>
         </Form.Item>
       </Form>
-        </div>      
-    );
-  };
-  
-  export default Authorization;
+    </div>
+  );
+};
+
+export default Authorization;

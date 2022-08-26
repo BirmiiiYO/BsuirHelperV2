@@ -1,10 +1,7 @@
-import { FC } from "react"
+import { FC } from 'react';
 
-const Contacts:FC = () => {
+const Contacts: FC = () => {
+  return <h1>Contacts</h1>;
+};
 
-  return (
-    <h1>Contacts</h1>
-  )
-}
-
-export default Contacts
+export default Contacts;

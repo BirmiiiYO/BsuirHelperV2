@@ -3,7 +3,7 @@ import Icon from '../public/mapMarker.svg';
 
 const LocationIcon = new L.Icon({
   iconUrl: Icon,
- iconSize:[40,40]
+  iconSize: [40, 40],
 });
 
 export { LocationIcon };

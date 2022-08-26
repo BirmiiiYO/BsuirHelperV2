@@ -1,9 +1,7 @@
-import { FC } from "react"
+import { FC } from 'react';
 
-const Subjects:FC = () => {
-  return (
-    <div>subjects</div>
-  )
-}
+const Subjects: FC = () => {
+  return <div>subjects</div>;
+};
 
-export default Subjects
+export default Subjects;
